@@ -1,6 +1,7 @@
 package dal.gravity;
 
 import java.text.NumberFormat;
+import java.util.Scanner;
 
 /** 
  * compares the values of a simple pendulum using the harmonic motion equation
@@ -14,10 +15,13 @@ public class PendulumRunner {
 
 	double delta = (args.length == 0) ? .1 : Double.parseDouble (args[0]);
 	double sLen = 10, pMass = 10, theta0 = Math.PI/30;
-	RegularPendulum rp = new RegularPendulum (sLen, pMass, theta0, delta);
-	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0);
+	System.out.print("Enter gravity: ");
+	Scanner input = new Scanner(System.in);
+	double g = input.nextDouble();
+	RegularPendulum rp = new RegularPendulum (sLen, pMass, theta0, g, delta);
+	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0, g);
 	RegularPendulum rpCoarse = 
-	    new RegularPendulum (sLen, pMass, theta0, .1);
+	    new RegularPendulum (sLen, pMass, theta0, g, .1);
 
 	// print out difference in displacement in 1 second intervals
 	// for 20 seconds
