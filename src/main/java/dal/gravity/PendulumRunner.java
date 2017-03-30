@@ -17,11 +17,11 @@ public class PendulumRunner {
 	double sLen = 10, pMass = 10, theta0 = Math.PI/30;
 	System.out.print("Enter gravity: ");
 	Scanner input = new Scanner(System.in);
-	double g = input.nextDouble();
-	RegularPendulum rp = new RegularPendulum (sLen, pMass, theta0, g, delta);
-	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0, g);
+	GravityModel GravityConstant = new GravityModel(input.nextDouble());
+	RegularPendulum rp = new RegularPendulum (sLen, pMass, theta0, GravityConstant, delta);
+	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0, GravityConstant);
 	RegularPendulum rpCoarse = 
-	    new RegularPendulum (sLen, pMass, theta0, g, .1);
+	    new RegularPendulum (sLen, pMass, theta0, GravityConstant, .1);
 
 	// print out difference in displacement in 1 second intervals
 	// for 20 seconds
